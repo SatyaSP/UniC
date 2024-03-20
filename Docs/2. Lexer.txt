@@ -27,5 +27,3 @@ The `_switch_line` method updates the line number and removes leading whitespace
 The `update_symbol_table` method updates the symbol table with a new identifier.
 
 The `get_next_token` method is the main workhorse of the lexer. It reads the input source code and tokenizes it using a DFA. It returns the next token in the input, or the special "EOF" token if the end of the input has been reached.
-
-The `main` function at the bottom of the code creates a `Lexer` object and uses it to tokenize the input source code. It then saves the lexical errors and tokens to files.

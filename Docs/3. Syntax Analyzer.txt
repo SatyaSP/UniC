@@ -1,0 +1,30 @@
+This code defines a parser for a C-like programming language. The parser reads the input source code and produces a parse tree based on the grammar rules defined in the `productions` tuple. The parse tree is then used by the semantic analyzer to perform type checking and generate intermediate code.
+
+
+The non_terminal_to_missing_construct dictionary maps non-terminal symbols to their corresponding missing constructs. This dictionary is used to generate error messages when a syntax error is encountered during parsing.
+For example, if the parser expects to see a variable declaration but encounters a semicolon instead, it will generate an error message indicating that a variable declaration is missing. The missing construct for the Declaration non-terminal is "int ID;", which indicates that a variable declaration consists of the int keyword followed by an identifier and a semicolon.
+The non_terminal_to_missing_construct dictionary is used to generate these error messages by looking up the missing construct for the non-terminal symbol that caused the syntax error. The missing construct is then included in the error message to help the user understand what is missing from the input source code.
+The `productions` tuple defines the grammar rules for the programming language. Each production rule is represented as a tuple of symbols, where the first symbol is the non-terminal and the remaining symbols are the right-hand side of the production rule.
+
+The `terminal_to_col` dictionary maps terminals to their corresponding column numbers in the parsing table.
+
+The `non_terminal_to_row` dictionary maps non-terminals to their corresponding row numbers in the parsing table.
+
+The `parsing_table` tuple defines the parsing table for the programming language. Each row of the table corresponds to a non-terminal, and each column corresponds to a terminal. The entries in the table are the production rule indices that should be applied when the non-terminal is at the top of the parse stack and the terminal is the next input symbol.
+
+The `Parser` class is defined at the bottom of the code. It has several methods that are used to parse the input source code and build the parse tree.
+
+The `__init__` method initializes the parser by creating a new `Lexer` object and a new `SemanticAnalyser` object. It also creates a root node for the parse tree and initializes the parse stack with the root node and a special `$` node.
+
+The `syntax_errors` property returns a string that contains a list of all syntax errors that were encountered during parsing.
+
+The `save_parse_tree` method saves the parse tree to a file.
+
+The `save_syntax_errors` method saves the syntax errors to a file.
+
+The `_remove_node` method removes a node from the parse tree.
+
+The `_clean_up_tree` method removes non-terminals and unmet terminals from leaf nodes in the parse tree.
+
+The `parse` method is the main workhorse of the parser. It reads the input source code and tokenizes it using the `Lexer` object. It then uses the `SemanticAnalyser` object to perform semantic checking and generate intermediate code. It also builds the parse tree by recursively applying the production rules defined in the `productions` tuple.
+

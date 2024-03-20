@@ -1,0 +1,169 @@
+Program
+└── Declaration-list
+    ├── Declaration
+    │   ├── Declaration-initial
+    │   │   ├── Type-specifier
+    │   │   │   └── (KEYWORD, void)
+    │   │   └── (ID, main)
+    │   └── Declaration-prime
+    │       └── Fun-declaration-prime
+    │           ├── (SYMBOL, ()
+    │           ├── Params
+    │           │   ├── (KEYWORD, void)
+    │           │   └── Param-list-void-abtar
+    │           │       └── EPSILON
+    │           ├── (SYMBOL, ))
+    │           └── Compound-stmt
+    │               ├── (SYMBOL, {)
+    │               ├── Declaration-list
+    │               │   ├── Declaration
+    │               │   │   ├── Declaration-initial
+    │               │   │   │   ├── Type-specifier
+    │               │   │   │   │   └── (KEYWORD, int)
+    │               │   │   │   └── (ID, i)
+    │               │   │   └── Declaration-prime
+    │               │   │       └── Var-declaration-prime
+    │               │   │           └── (SYMBOL, ;)
+    │               │   └── Declaration-list
+    │               │       └── EPSILON
+    │               ├── Statement-list
+    │               │   ├── Statement
+    │               │   │   └── Expression-stmt
+    │               │   │       ├── Expression
+    │               │   │       │   ├── (ID, i)
+    │               │   │       │   └── B
+    │               │   │       │       ├── (SYMBOL, =)
+    │               │   │       │       └── Expression
+    │               │   │       │           └── Simple-expression-zegond
+    │               │   │       │               ├── Additive-expression-zegond
+    │               │   │       │               │   ├── Term-zegond
+    │               │   │       │               │   │   ├── Factor-zegond
+    │               │   │       │               │   │   │   └── (NUM, 7)
+    │               │   │       │               │   │   └── G
+    │               │   │       │               │   │       └── EPSILON
+    │               │   │       │               │   └── D
+    │               │   │       │               │       └── EPSILON
+    │               │   │       │               └── C
+    │               │   │       │                   └── EPSILON
+    │               │   │       └── (SYMBOL, ;)
+    │               │   └── Statement-list
+    │               │       ├── Statement
+    │               │       │   └── Switch-stmt
+    │               │       │       ├── (KEYWORD, switch)
+    │               │       │       ├── (SYMBOL, ()
+    │               │       │       ├── Expression
+    │               │       │       │   ├── (ID, i)
+    │               │       │       │   └── B
+    │               │       │       │       └── Simple-expression-prime
+    │               │       │       │           ├── Additive-expression-prime
+    │               │       │       │           │   ├── Term-prime
+    │               │       │       │           │   │   ├── Factor-prime
+    │               │       │       │           │   │   │   └── EPSILON
+    │               │       │       │           │   │   └── G
+    │               │       │       │           │   │       └── EPSILON
+    │               │       │       │           │   └── D
+    │               │       │       │           │       └── EPSILON
+    │               │       │       │           └── C
+    │               │       │       │               └── EPSILON
+    │               │       │       ├── (SYMBOL, ))
+    │               │       │       ├── (SYMBOL, {)
+    │               │       │       ├── Case-stmts
+    │               │       │       │   ├── Case-stmt
+    │               │       │       │   │   ├── (KEYWORD, case)
+    │               │       │       │   │   ├── (NUM, 3)
+    │               │       │       │   │   ├── (SYMBOL, :)
+    │               │       │       │   │   └── Statement-list
+    │               │       │       │   │       ├── Statement
+    │               │       │       │   │       │   └── Expression-stmt
+    │               │       │       │   │       │       ├── Expression
+    │               │       │       │   │       │       │   ├── (ID, output)
+    │               │       │       │   │       │       │   └── B
+    │               │       │       │   │       │       │       └── Simple-expression-prime
+    │               │       │       │   │       │       │           ├── Additive-expression-prime
+    │               │       │       │   │       │       │           │   ├── Term-prime
+    │               │       │       │   │       │       │           │   │   ├── Factor-prime
+    │               │       │       │   │       │       │           │   │   │   ├── (SYMBOL, ()
+    │               │       │       │   │       │       │           │   │   │   ├── Args
+    │               │       │       │   │       │       │           │   │   │   │   └── Arg-list
+    │               │       │       │   │       │       │           │   │   │   │       ├── Expression
+    │               │       │       │   │       │       │           │   │   │   │       │   └── Simple-expression-zegond
+    │               │       │       │   │       │       │           │   │   │   │       │       ├── Additive-expression-zegond
+    │               │       │       │   │       │       │           │   │   │   │       │       │   ├── Term-zegond
+    │               │       │       │   │       │       │           │   │   │   │       │       │   │   ├── Factor-zegond
+    │               │       │       │   │       │       │           │   │   │   │       │       │   │   │   └── (NUM, 7)
+    │               │       │       │   │       │       │           │   │   │   │       │       │   │   └── G
+    │               │       │       │   │       │       │           │   │   │   │       │       │   │       └── EPSILON
+    │               │       │       │   │       │       │           │   │   │   │       │       │   └── D
+    │               │       │       │   │       │       │           │   │   │   │       │       │       └── EPSILON
+    │               │       │       │   │       │       │           │   │   │   │       │       └── C
+    │               │       │       │   │       │       │           │   │   │   │       │           └── EPSILON
+    │               │       │       │   │       │       │           │   │   │   │       └── Arg-list-prime
+    │               │       │       │   │       │       │           │   │   │   │           └── EPSILON
+    │               │       │       │   │       │       │           │   │   │   └── (SYMBOL, ))
+    │               │       │       │   │       │       │           │   │   └── G
+    │               │       │       │   │       │       │           │   │       └── EPSILON
+    │               │       │       │   │       │       │           │   └── D
+    │               │       │       │   │       │       │           │       └── EPSILON
+    │               │       │       │   │       │       │           └── C
+    │               │       │       │   │       │       │               └── EPSILON
+    │               │       │       │   │       │       └── (SYMBOL, ;)
+    │               │       │       │   │       └── Statement-list
+    │               │       │       │   │           ├── Statement
+    │               │       │       │   │           │   └── Expression-stmt
+    │               │       │       │   │           │       ├── (KEYWORD, break)
+    │               │       │       │   │           │       └── (SYMBOL, ;)
+    │               │       │       │   │           └── Statement-list
+    │               │       │       │   │               └── EPSILON
+    │               │       │       │   └── Case-stmts
+    │               │       │       │       └── EPSILON
+    │               │       │       ├── Default-stmt
+    │               │       │       │   ├── (KEYWORD, default)
+    │               │       │       │   ├── (SYMBOL, :)
+    │               │       │       │   └── Statement-list
+    │               │       │       │       ├── Statement
+    │               │       │       │       │   └── Expression-stmt
+    │               │       │       │       │       ├── Expression
+    │               │       │       │       │       │   ├── (ID, output)
+    │               │       │       │       │       │   └── B
+    │               │       │       │       │       │       └── Simple-expression-prime
+    │               │       │       │       │       │           ├── Additive-expression-prime
+    │               │       │       │       │       │           │   ├── Term-prime
+    │               │       │       │       │       │           │   │   ├── Factor-prime
+    │               │       │       │       │       │           │   │   │   ├── (SYMBOL, ()
+    │               │       │       │       │       │           │   │   │   ├── Args
+    │               │       │       │       │       │           │   │   │   │   └── Arg-list
+    │               │       │       │       │       │           │   │   │   │       ├── Expression
+    │               │       │       │       │       │           │   │   │   │       │   └── Simple-expression-zegond
+    │               │       │       │       │       │           │   │   │   │       │       ├── Additive-expression-zegond
+    │               │       │       │       │       │           │   │   │   │       │       │   ├── Term-zegond
+    │               │       │       │       │       │           │   │   │   │       │       │   │   ├── Factor-zegond
+    │               │       │       │       │       │           │   │   │   │       │       │   │   │   └── (NUM, 0)
+    │               │       │       │       │       │           │   │   │   │       │       │   │   └── G
+    │               │       │       │       │       │           │   │   │   │       │       │   │       └── EPSILON
+    │               │       │       │       │       │           │   │   │   │       │       │   └── D
+    │               │       │       │       │       │           │   │   │   │       │       │       └── EPSILON
+    │               │       │       │       │       │           │   │   │   │       │       └── C
+    │               │       │       │       │       │           │   │   │   │       │           └── EPSILON
+    │               │       │       │       │       │           │   │   │   │       └── Arg-list-prime
+    │               │       │       │       │       │           │   │   │   │           └── EPSILON
+    │               │       │       │       │       │           │   │   │   └── (SYMBOL, ))
+    │               │       │       │       │       │           │   │   └── G
+    │               │       │       │       │       │           │   │       └── EPSILON
+    │               │       │       │       │       │           │   └── D
+    │               │       │       │       │       │           │       └── EPSILON
+    │               │       │       │       │       │           └── C
+    │               │       │       │       │       │               └── EPSILON
+    │               │       │       │       │       └── (SYMBOL, ;)
+    │               │       │       │       └── Statement-list
+    │               │       │       │           ├── Statement
+    │               │       │       │           │   └── Expression-stmt
+    │               │       │       │           │       ├── (KEYWORD, break)
+    │               │       │       │           │       └── (SYMBOL, ;)
+    │               │       │       │           └── Statement-list
+    │               │       │       │               └── EPSILON
+    │               │       │       └── (SYMBOL, })
+    │               │       └── Statement-list
+    │               │           └── EPSILON
+    │               └── (SYMBOL, })
+    └── Declaration-list
+        └── EPSILON

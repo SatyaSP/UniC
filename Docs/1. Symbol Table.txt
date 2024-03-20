@@ -1,0 +1,59 @@
+This code defines a class `SymbolTableManager` that manages the symbol table of the compiler. The symbol table is used to keep track of all the identifiers (variables, functions, etc.) in the program and their associated information, such as their type, scope, and memory address.
+
+The class has several class methods that perform various operations on the symbol table. Here is a brief explanation of each method:
+
+* `_global_funcs`: This is a class variable that stores the list of built-in functions that are available to the compiler. In this case, it only includes the `printf` function.
+
+* `init`: This is a class method that initializes the symbol table. It creates empty lists for the scope stack, temp stack, and argument list stack. It also initializes the symbol table with a copy of the `_global_funcs` list and sets the declaration flag and error flag to False.
+
+* `scope`: This is a class method that returns the current scope of the symbol table. The scope is determined by the number of elements in the scope stack.
+
+* `insert`: This is a class method that inserts a new identifier into the symbol table. It takes the lexim (identifier name) as an argument and appends a new dictionary to the symbol table with the lexim and the current scope.
+
+* `_exists`: This is a private class method that checks if an identifier already exists in the symbol table. It takes the lexim and scope as arguments and returns True if the identifier is found, False otherwise.
+
+* `findrow`: This is a class method that finds the row in the symbol table that matches a given value for a given attribute. It takes the value and attribute name as arguments and returns the row if found, None otherwise.
+
+* `findrow_idx`: This is a class method that finds the index of the row in the symbol table that matches a given value for a given attribute. It takes the value and attribute name as arguments and returns the index if found, None otherwise.
+
+* `install_id`: This is a class method that installs an identifier in the symbol table. It takes the lexim as an argument and checks if the identifier already exists in the symbol table. If it does not exist, it inserts a new row with the lexim and the current scope. If it does exist, it returns the index of the existing row.
+
+* `get_enclosing_fun`: This is a class method that returns the enclosing function for the current scope. It takes an optional level argument that specifies how many levels up the scope stack to look for the enclosing function. If no enclosing function is found, it returns None.
+
+
+## 
+gen_enclosing_fun :
+
+The get_enclosing_fun method is used to find the enclosing function for the current scope. In other words, it finds the most recent function definition that encloses the current scope. This is useful for resolving function calls and variable references within the current scope.
+The method takes an optional level argument, which specifies how many levels up the scope stack to look for the enclosing function. By default, it looks one level up.
+The method first checks the top of the scope stack to see if it corresponds to a function definition. If it does, it returns the corresponding row from the symbol table. If it does not, it pops the top element off the scope stack and continues searching up the stack until it finds a function definition or reaches the bottom of the stack.
+If the method reaches the bottom of the stack without finding a function definition, it raises an IndexError exception. This indicates that there is no enclosing function for the current scope, which is an error.
+Here's an example to illustrate how get_enclosing_fun works:
+
+# Initialize the symbol table manager
+symbol_table = SymbolTableManager()
+
+# Define some functions and variables
+symbol_table.insert("main", "int", "function", 0)
+symbol_table.insert("foo", "int", "variable", 0)
+symbol_table.push_scope()
+symbol_table.insert("bar", "int", "function", 1)
+symbol_table.insert("baz", "int", "variable", 1)
+
+# Get the enclosing function for the current scope
+enclosing_fun = symbol_table.get_enclosing_fun()
+
+# Print the enclosing function's name and scope
+print(enclosing_fun["lexim"])  # Output: "bar"
+print(enclosing_fun["scope"])  # Output: 1
+
+# Pop the current scope and get the enclosing function again
+symbol_table.pop_scope()
+enclosing_fun = symbol_table.get_enclosing_fun()
+
+# Print the enclosing function's name and scope
+print(enclosing_fun["lexim"])  # Output: "main"
+print(enclosing_fun["scope"])  # Output: 0
+
+In this example, we first initialize the symbol table manager and define some functions and variables. We then push a new scope onto the stack and define a new function bar and a new variable baz. We then call get_enclosing_fun to find the enclosing function for the current scope. Since we are currently in the scope of function bar, the method returns the row corresponding to bar from the symbol table.
+We then pop the current scope off the stack and call get_enclosing_fun again. This time, the method returns the row corresponding to function main, which is the enclosing function for the current scope.

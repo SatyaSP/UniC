@@ -1,0 +1,79 @@
+The `SemanticAnalyser` class is responsible for performing semantic analysis on the input program. It does this by defining a set of semantic checks that are performed on the input program as it is being parsed. These checks are defined in the `semantic_checks` dictionary, which maps action symbols to semantic analysis routines.
+
+The `semantic_stacks` dictionary is used to store information about the input program during semantic analysis. It contains several stacks, including the `main_check` stack, which is used to check whether the `main` function has been defined, and the `type_assign` stack, which is used to keep track of the types of variables and functions.
+
+The `main_found` and `main_not_last` flags are used to keep track of whether the `main` function has been found and whether it is the last global function definition in the input program.
+
+The `arity_counter`, `while_counter`, and `switch_counter` counters are used to keep track of the number of arguments passed to a function, the number of `while` loops in the input program, and the number of `switch` statements in the input program, respectively.
+
+The `fun_param_list` and `fun_arg_list` lists are used to store the parameters and arguments of functions, respectively.
+
+The `_semantic_errors` list is used to store any semantic errors that are encountered during analysis.
+
+The `semantic_error_file` variable is used to specify the file where semantic errors are written.
+
+The `SemanticAnalyser` class has several methods that are used to perform semantic analysis. These include:
+
+* `inc_scope_routine`: This method is called when the parser encounters the `#SA_INC_SCOPE` action symbol. It increments the current scope by pushing the current size of the `SymbolTableManager.symbol_table` list onto the `SymbolTableManager.scope_stack` stack.
+
+* `dec_scope_routine`: This method is called when the parser encounters the `#SA_DEC_SCOPE` action symbol. It decrements the current scope by popping the top element from the `SymbolTableManager.scope_stack` stack and setting the `SymbolTableManager.symbol_table` list to the sublist up to that index.
+
+* `save_main_routine`: This method is called when the parser encounters the `#SA_SAVE_MAIN` action symbol. It saves the lexeme of the current token in the `semantic_stacks["main_check"]` stack.
+
+* `pop_main_routine`: This method is called when the parser encounters the `#SA_MAIN_POP` action symbol. It pops the top two elements from the `semantic_stacks["main_check"]` stack.
+
+* `check_main_routine`: This method is called when the parser encounters the `#SA_MAIN_CHECK` action symbol. It checks whether the `main` function has been found in the input program and whether it is the last global function definition.
+
+* `save_type_routine`: This method is called when the parser encounters the `#SA_SAVE_TYPE` action symbol. It sets the `SymbolTableManager.declaration_flag` flag to `True` and saves the type of the current token in the `semantic_stacks["type_assign"]` stack.
+
+* `assign_type_routine`: This method is called when the parser encounters the `#SA_ASSIGN_TYPE` action symbol. It assigns the type of the current token to the symbol in the `SymbolTableManager.symbol_table` list with the same index as the top element of the `semantic_stacks["type_assign"]` stack.
+
+* `assign_fun_role_routine`: This method is called when the parser encounters the `#SA_ASSIGN_FUN_ROLE` action symbol. It assigns the `function` role to the symbol in the `SymbolTableManager.symbol_table` list with the same index as the top element of the `semantic_stacks["type_assign"]` stack.
+
+* `assign_param_role_routine`: This method is called when the parser encounters the `#SA_ASSIGN_PARAM_ROLE` action symbol. It assigns the `param` role to the symbol in the `SymbolTableManager.symbol_table` list with the same index as the top element of the `semantic_stacks["type_assign"]` stack.
+
+* `assign_var_role_routine`: This method is called when the parser encounters the `#SA_ASSIGN_VAR_ROLE` action symbol. It assigns the `local_var` role to the symbol in the `SymbolTableManager.symbol_table` list with the same index as the top element of the `semantic_stacks["type_assign"]` stack.
+
+* `assign_length_routine`: This method is called when the parser encounters the `#SA_ASSIGN_LENGTH` action symbol. It assigns the length of the current token to the `arity` attribute of the symbol in the `SymbolTableManager.symbol_table` list with the same index as the top element of the `semantic_stacks["type_assign"]` stack.
+
+* `save_param_routine`: This method is called when the parser encounters the `#SA_SAVE_PARAM` action symbol. It saves the type of the current token in the `fun_param_list` list.
+
+* `push_arg_stack_routine`: This method is called when the parser encounters the `#SA_PUSH_ARG_STACK` action symbol. It pushes an empty list onto the `SymbolTableManager.arg_list_stack` stack.
+
+* `pop_arg_stack_routine`: This method is called when the parser encounters the `#SA_POP_ARG_STACK` action symbol. It pops the top element from the `SymbolTableManager.arg_list_stack` stack.
+
+* `save_arg_routine`: This method is called when the parser encounters the `#SA_SAVE_ARG` action symbol. It saves the type of the current token in the top element of the `SymbolTableManager.arg_list_stack` stack.
+
+* `assign_fun_attrs_routine`: This method is called when the parser encounters the `#SA_ASSIGN_FUN_ATTRS` action symbol. It assigns the attributes of the current function to the symbol in the `SymbolTableManager.symbol_table` list with the same index as the top element of the self.semantic_stacks["type_assign"] stack. It does this by setting the "arity" attribute of the symbol to the length of the params list, and the "params" attribute to the params list itself. It also initializes a temporary counter for the function by appending 0 to the SymbolTableManager.temp_stack stack.
+
+The `check_main_routine` method checks if the main function has been defined and if it is the last global function definition. It does this by looking at the top three elements of the `main_check` stack and comparing them to the expected signature of the main function, which is `("void", "main", "void")`. If the signatures match and the current scope is 1 (indicating that we are at the global scope), then the `main_found` flag is set to True. If the `main_found` flag is already True and the current scope is 1, then the `main_not_last` flag is set to True.
+
+The `check_declaration_routine` method checks if a variable has been declared before it is used. It does this by looking up the variable in the symbol table and checking if it has a type associated with it. If the variable is not found in the symbol table or does not have a type, then a semantic error is reported.
+
+The `save_fun_routine` method saves the ID of a function in the `fun_check` stack when it is encountered. This is used to check the arguments of the function later.
+
+The `check_args_routine` method checks the arguments of a function to make sure they match the expected types and number of arguments. It does this by popping the ID of the function from the `fun_check` stack and looking up its expected arguments and arity (number of arguments) in the symbol table. It then compares this to the actual arguments that were passed to the function, which are stored in the `arg_list_stack`. If there is a mismatch in the number or types of arguments, then a semantic error is reported.
+
+The `push_while_routine` method increments the `while_counter` when a `while` statement is encountered. This is used to check for the use of `continue` statements outside of a `while` loop.
+
+The `check_while_routine` method checks if a `continue` statement is being used outside of a `while` loop. It does this by checking the value of the `while_counter`. If the `while_counter` is 0 or less, then a semantic error is reported.
+
+The `pop_while_routine` method decrements the `while_counter` when a `while` statement is exited.
+
+The `push_switch_routine` method increments the `switch_counter` when a `switch` statement is encountered. This is used to check for the use of `break` statements outside of a `switch` or `while` loop.
+
+The `check_break_routine` method checks if a `break` statement is being used outside of a `switch` or `while` loop. It does this by checking the values of the `while_counter` and `switch_counter`. If both counters are 0 or less, then a semantic error is reported.
+
+The `pop_switch_routine` method decrements the `switch_counter` when a `switch` statement is exited.
+
+The `save_type_check_routine` method saves the type of an operand in the `type_check` stack when it is encountered. This is used to check for type mismatches in binary operations.
+
+The `index_array_routine` method sets the type of the top element of the `type_check` stack to `int` when an array is indexed. This is because array indices must be integers.
+
+The `index_array_pop_routine` method pops the top element of the `type_check` stack when an array indexing operation is completed.
+
+The `type_check_routine` method checks for type mismatches in binary operations. It does this by popping the types of the two operands from the `type_check` stack and comparing them. If the types do not match, then a semantic error is reported. If the types do match, then the type of the result is pushed back onto the `type_check` stack.
+
+The `semantic_check` method is called by the parser whenever an action symbol is encountered in the input. It looks up the corresponding semantic routine in the `semantic_checks` dictionary and calls it with the current input token and line number. If an exception is raised during the execution of the semantic routine, then an error message is printed.
+
+The `eof_check` method is called by the parser when the end of the input is reached. It checks if the `main_found` and `main_not_last` flags are set to True. If either flag is False, then a semantic error is reported indicating that the main function was not found.

@@ -2,12 +2,12 @@ class SymbolTableManager(object):
     ''' Manages the symbol table of the compiler 
         which is used across modules '''
     _global_funcs = [{
-        "lexim": "output",
+        "lexim": "printf",
         "scope": 0,
         "type": "void",
         "role": "function",
         "arity": 1,
-        "params": ["int"]
+        "params": ["int", "char", "string", "float", "double", "bool", "void"]
     }]
 
     @classmethod

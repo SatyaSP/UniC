@@ -1,0 +1,31 @@
+This code defines a lexer for a C-like programming language. The lexer reads the input source code and breaks it down into tokens, which are the smallest units of meaning in the language. The tokens are then used by the parser to build an abstract syntax tree (AST) that represents the structure of the program.
+
+The code defines several constants and data structures that are used by the lexer. For example, the `char_to_col` dictionary maps characters to their corresponding column numbers in the DFA table, and the `state_to_token` dictionary maps DFA states to their corresponding token types. 
+
+The `Lexer` class is defined at the bottom of the code. It has several methods that are used to read the input source code, tokenize it, and save the tokens to a file.
+
+The `__init__` method initializes the lexer by setting up some variables and reading the input source code into a string. It also defines several lexical specifications, such as the set of keywords and symbols that are recognized by the lexer.
+
+The `read_input` method reads a chunk of the input source code from the file and appends it to the input string.
+
+The `lexical_errors` property returns a string that contains a list of all lexical errors that were encountered during tokenization.
+
+The `save_lexical_errors` method saves the lexical errors to a file.
+
+The `id_to_lexim` method returns the lexeme (i.e., the actual text) of a given identifier from the symbol table by using the token_id.
+
+The `token_to_str` method returns a string representation of a given token in the format : '(KEYWORD, void)'.
+
+The `_resolve_dfa_table_column` method maps a character to its corresponding column number in the DFA table.
+
+The `save_tokens` method saves the tokens to a file.
+
+The `save_symbol_table` method saves the symbol table to a file.
+
+The `_switch_line` method updates the line number and removes leading whitespace from the next line of input.
+
+The `update_symbol_table` method updates the symbol table with a new identifier.
+
+The `get_next_token` method is the main workhorse of the lexer. It reads the input source code and tokenizes it using a DFA. It returns the next token in the input, or the special "EOF" token if the end of the input has been reached.
+
+The `main` function at the bottom of the code creates a `Lexer` object and uses it to tokenize the input source code. It then saves the lexical errors and tokens to files.

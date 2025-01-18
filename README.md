@@ -18,6 +18,8 @@ Implementation Details
 - Programming Language: Python
 - Libraries : anytree
 - Compiler Components: Lexer, Parser, Semantic Analyzer, Symbol Table Manager
+- DFA : We designed the following DFA to implement the lexer. 
+<p align="center"><img src="Docs/DFA.png" width="550" title="hover text"></p>
 
 Getting Started
 -------------------
@@ -31,5 +33,5 @@ To explore UniC, follow these steps:
 4. Run the compiler frontend using Python:
    ```python unic.py```
 
-If you are on windows you can use unic.cmd or unic.ps1 to directly run commands on command prompt or powershell to provide the C file path. (```.\unic <path/to/c/file.c>```). Alternatively you can add this directory to you environment variables to use this command globally in your terminal.
+If you are on windows you can also use ```unic.cmd``` or ```unic.ps1``` to directly run commands on command prompt or powershell to provide the C file path. (```.\unic <path/to/c/file.c>```). Alternatively you can add this directory to you environment path variables list to use this command globally in your terminal.
 
